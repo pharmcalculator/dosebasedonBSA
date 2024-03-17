@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Total Dose Calculator by BSA</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .disclaimer {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f0f0f0;
+            border-radius: 4px;
+        }
+        .disclaimer p {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Total Dose Calculator by BSA</h2>
+        <label for="bsa">Body Surface Area (BSA) (m²):</label>
+        <input type="number" id="bsa" min="0.1" step="0.01">
+        <label for="mg_per_m2">Dose per m² (mg):</label>
+        <input type="number" id="mg_per_m2" min="1" step="any">
+        <label for="frequency">Frequency of Treatment (per day):</label>
+        <input type="number" id="frequency" min="1" step="1">
+        <label for="duration">Duration of Treatment (Days):</label>
+        <input type="number" id="duration" min="1" step="1">
+        <button onclick="calculateTotalDose()">Calculate Total Dose</button>
+        <div id="result"></div>
+    </div>
+
+    <div class="disclaimer">
+        <p><strong>Disclaimer:</strong> This calculator provides an estimate of the total dose needed based on the Body Surface Area (BSA), dose per m², frequency of treatment, and duration of treatment. The calculation is based on the following formula:</p>
+        <p style="margin-left: 20px;">Total Dose = BSA × Dose per m² × Frequency × Duration</p>
+        <p>Please note that this calculator provides an estimate and should not replace medical advice. Always consult with a healthcare professional for accurate dosing recommendations.</p>
+    </div>
+
+    <script>
+        function calculateTotalDose() {
+            var bsa = parseFloat(document.getElementById("bsa").value);
+            var mg_per_m2 = parseFloat(document.getElementById("mg_per_m2").value);
+            var frequency = parseInt(document.getElementById("frequency").value);
+            var duration = parseInt(document.getElementById("duration").value);
+
+            var totalDose = bsa * mg_per_m2 * frequency * duration;
+
+            var resultText = "Total Dose: " + totalDose.toFixed(2) + " mg";
+
+            document.getElementById("result").innerHTML = resultText;
+        }
+    </script>
+</body>
+</html>
